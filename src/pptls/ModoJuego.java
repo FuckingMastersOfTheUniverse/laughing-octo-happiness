@@ -5,6 +5,8 @@
  */
 package pptls;
 
+import java.awt.event.WindowEvent;
+
 /**
  *
  * @author M
@@ -14,6 +16,8 @@ public class ModoJuego extends javax.swing.JFrame {
     public String ipGuest = "";
     public int portSend;
     public int portReceive;
+    
+    private Frame frame;
 
     /**
      * Creates new form ModoJuego
@@ -41,6 +45,11 @@ public class ModoJuego extends javax.swing.JFrame {
         setAlwaysOnTop(true);
 
         bt_uno.setText("Un jugador vs pc");
+        bt_uno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_unoActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("¡Contra mi amigo!");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -55,11 +64,6 @@ public class ModoJuego extends javax.swing.JFrame {
         jLabel2.setText("Multijugador");
 
         create.setText("Crear partida");
-        create.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,7 +81,6 @@ public class ModoJuego extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(15, 15, 15)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(create)))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
@@ -103,10 +106,6 @@ public class ModoJuego extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void createActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_createActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         this.ipGuest = friendIp.getText();
@@ -124,6 +123,16 @@ public class ModoJuego extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void bt_unoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_unoActionPerformed
+        // TODO add your handling code here:
+        
+        //Inicia la otra ventana cerrando esta y pasando la variable que queremos
+        String palabra = friendIp.getText();
+        frame = new Frame();
+        frame.iniciar(palabra);
+        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+    }//GEN-LAST:event_bt_unoActionPerformed
 
     /**
      * @param args the command line arguments

@@ -15,7 +15,7 @@ public class Frame extends javax.swing.JFrame {
     Jugador jug1;
     boolean active;
     
-    ModoJuego modo;
+    private String palabra;
     
     public Frame() {
                 
@@ -38,9 +38,6 @@ public class Frame extends javax.swing.JFrame {
         iconoSet("int.gif", label1);
         iconoSet("tick.png", jButton1, "Estoy listo!");
         iconoSet("hint.png", hint, "Ayuda");
-        
-        modo = new ModoJuego();
-        modo.setVisible(true);
         
         jug1 = new Jugador();
         ord = new Ordenador();
@@ -319,40 +316,17 @@ public class Frame extends javax.swing.JFrame {
         hint.setVisible(true);
     }//GEN-LAST:event_hintMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    //En esta funcion recibe todas las variables necesarias.
+    public void iniciar(String palabra) {
+        if(palabra == null || palabra == "") {
+            
+            System.out.println("No has escrito ninguna palabra");
+        } else {
+            //Realizo esta prueba para comprobar si el set y el get funcionan.
+            this.setPalabra(palabra);
+            System.out.println(this.getPalabra());
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new Frame().setVisible(true);
-            }
-        });
+        new Frame().setVisible(true);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton b_lagarto;
@@ -481,5 +455,13 @@ public class Frame extends javax.swing.JFrame {
         }
         //Para que no guarde el último elegido en la siguiente partida, hacemos set a null
         jug1.setElegido(null);
+    }
+    
+    public void setPalabra(String palabra) {
+        this.palabra = palabra;
+    }
+    
+    public String getPalabra() {
+        return palabra;
     }
 }
