@@ -318,8 +318,7 @@ public class Frame extends javax.swing.JFrame {
 
     //En esta funcion recibe todas las variables necesarias.
     public void iniciar(String palabra) {
-        if(palabra == null || palabra == "") {
-            
+        if(palabra == null || palabra.isEmpty()) {
             System.out.println("No has escrito ninguna palabra");
         } else {
             //Realizo esta prueba para comprobar si el set y el get funcionan.

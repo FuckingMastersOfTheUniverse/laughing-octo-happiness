@@ -23,6 +23,7 @@ public class ModoJuego extends javax.swing.JFrame {
      * Creates new form ModoJuego
      */
     public ModoJuego() {
+        frame = new Frame();
         initComponents();
     }
 
@@ -129,7 +130,6 @@ public class ModoJuego extends javax.swing.JFrame {
         
         //Inicia la otra ventana cerrando esta y pasando la variable que queremos
         String palabra = friendIp.getText();
-        frame = new Frame();
         frame.iniciar(palabra);
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }//GEN-LAST:event_bt_unoActionPerformed
