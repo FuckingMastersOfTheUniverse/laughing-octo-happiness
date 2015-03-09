@@ -26,7 +26,7 @@ public class Frame extends javax.swing.JFrame {
         iconoSet("lagarto.png", this.b_lagarto);
         iconoSet("spock.png", this.b_spock);
         
-        active=true;
+        active = true;
         label1.setOpaque(true);
         label2.setOpaque(true);
         Color amarilloClaro=new Color(255, 255, 149);
@@ -268,24 +268,27 @@ public class Frame extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
        
+        //Si ha elegido algo
         if(jug1.getElegido() != null) 
         {
-            
             active=false;
             ord.setElegido(ord.randomChoice());
             iconoSet(ord.getElegido(),label2);
+            //En caso de empate
             if(checkEmpate()==true)
             {
                 JOptionPane.showMessageDialog(null,"Vaya... ha habido un empate"); 
             } 
             else 
             {
+                //En caso de victoria
                 if(checkVictoria() == true) 
                 {
                     JOptionPane.showMessageDialog(null,"¡¡VICTORIA!!"); 
                     int contVictorias = Integer.parseInt(marc1.getText()) + 1;
                     marc1.setText(Integer.toString(contVictorias));
-                } 
+                }
+                //En caso de derrota
                 else
                 {
                     JOptionPane.showMessageDialog(null,"Dedícate a las chapas..."); 
@@ -299,6 +302,7 @@ public class Frame extends javax.swing.JFrame {
             active=true;
 
         }
+        //Si no ha elegido nada
         else
         {
             JOptionPane.showMessageDialog(null,"Anda, elige algo antes."); 
@@ -340,6 +344,7 @@ public class Frame extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Frame().setVisible(true);
             }
@@ -395,8 +400,9 @@ public class Frame extends javax.swing.JFrame {
     
     public boolean checkVictoria(){
         
-        boolean gana = false;
+        boolean gana;
         
+        //Para cada objeto comparamos si gana o pierde
         switch(jug1.getElegido())
         {
             case "piedra.png": 
@@ -455,6 +461,7 @@ public class Frame extends javax.swing.JFrame {
         return gana;
     }
     
+    //Resetea los label al icono de interrogaciones con un timer
     public void limpiar() {
         
         try
@@ -468,7 +475,7 @@ public class Frame extends javax.swing.JFrame {
         {
             e.getMessage();
         }
-        
+        //Para que no guarde el último elegido en la siguiente partida, hacemos set a null
         jug1.setElegido(null);
     }
 }
