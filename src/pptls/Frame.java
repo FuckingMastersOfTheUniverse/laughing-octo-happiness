@@ -136,7 +136,7 @@ public class Frame extends javax.swing.JFrame {
 
         marc1.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
         marc1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        marc1.setText("1");
+        marc1.setText("0");
         marc1.setPreferredSize(new java.awt.Dimension(73, 80));
 
         marc2.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
@@ -267,28 +267,42 @@ public class Frame extends javax.swing.JFrame {
     }//GEN-LAST:event_b_spockMouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        active=false;
-        ord.setElegido(ord.randomChoice());
-        iconoSet(ord.getElegido(),label2);
-        if(checkEmpate()==true)
-        {
-            JOptionPane.showMessageDialog(null,"Vaya... ha habido un empate"); 
-             try
-            {
-                Thread.currentThread().sleep(2000);//sleep for 1000 ms
-                iconoSet("int.gif", label1);
-                iconoSet("int.gif", label2);
-
-            }
-            catch(Exception e)
-            {
-                e.getMessage();
-            }
-        }
-        
-        active=true;
        
-        
+        if(jug1.getElegido() != null) 
+        {
+            
+            active=false;
+            ord.setElegido(ord.randomChoice());
+            iconoSet(ord.getElegido(),label2);
+            if(checkEmpate()==true)
+            {
+                JOptionPane.showMessageDialog(null,"Vaya... ha habido un empate"); 
+            } 
+            else 
+            {
+                if(checkVictoria() == true) 
+                {
+                    JOptionPane.showMessageDialog(null,"¡¡VICTORIA!!"); 
+                    int contVictorias = Integer.parseInt(marc1.getText()) + 1;
+                    marc1.setText(Integer.toString(contVictorias));
+                } 
+                else
+                {
+                    JOptionPane.showMessageDialog(null,"Dedícate a las chapas..."); 
+                    int contVictorias = Integer.parseInt(marc2.getText()) + 1;
+                    marc2.setText(Integer.toString(contVictorias));
+                }
+            }
+
+            limpiar();
+
+            active=true;
+
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null,"Anda, elige algo antes."); 
+        }
         
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -379,14 +393,82 @@ public class Frame extends javax.swing.JFrame {
         return false;
     }
     
-    public String comparar(){
-        String cad="";
+    public boolean checkVictoria(){
         
-        if(jug1.getElegido().equalsIgnoreCase("piedra.png"))
+        boolean gana = false;
+        
+        switch(jug1.getElegido())
         {
-            
+            case "piedra.png": 
+                if(ord.getElegido().equalsIgnoreCase("largato.png") || ord.getElegido().equalsIgnoreCase("tijera.png"))
+                {
+                    gana = true;
+                }
+                else
+                {
+                    gana = false;
+                }
+                break;
+            case "tijera.png": 
+                if(ord.getElegido().equalsIgnoreCase("papel.png") || ord.getElegido().equalsIgnoreCase("lagarto.png"))
+                {
+                    gana = true;
+                }
+                else
+                {
+                    gana = false;
+                }
+                break;
+            case "papel.png": 
+                if(ord.getElegido().equalsIgnoreCase("piedra.png") || ord.getElegido().equalsIgnoreCase("spock.png"))
+                {
+                    gana = true;
+                }
+                else
+                {
+                    gana = false;
+                }
+                break;
+            case "lagarto.png": 
+                if(ord.getElegido().equalsIgnoreCase("papel.png") || ord.getElegido().equalsIgnoreCase("spock.png"))
+                {
+                    gana = true;
+                }
+                else
+                {
+                    gana = false;
+                }
+                break;
+            case "spock.png": 
+                if(ord.getElegido().equalsIgnoreCase("tijeras.png") || ord.getElegido().equalsIgnoreCase("piedra.png"))
+                {
+                    gana = true;
+                }
+                else
+                {
+                    gana = false;
+                }
+                break;
+            default: gana = false;
         }
         
-        return cad;
+        return gana;
+    }
+    
+    public void limpiar() {
+        
+        try
+        {
+            Thread.currentThread().sleep(400);//sleep for 1000 ms
+            iconoSet("int.gif", label1);
+            iconoSet("int.gif", label2);
+
+        }
+        catch(Exception e)
+        {
+            e.getMessage();
+        }
+        
+        jug1.setElegido(null);
     }
 }
