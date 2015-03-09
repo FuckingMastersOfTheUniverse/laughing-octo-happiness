@@ -11,7 +11,6 @@ public class Hint extends javax.swing.JFrame {
     public Hint() {
         initComponents();
         fondo.setOpaque(true);
-        
         ImageIcon icono= new ImageIcon("reglas.jpg");
         Icon icon = new ImageIcon(icono.getImage().getScaledInstance
         (fondo.getWidth(), fondo.getHeight(), Image.SCALE_DEFAULT));

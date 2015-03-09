@@ -15,6 +15,7 @@ public class Frame extends javax.swing.JFrame {
     Jugador jug1;
     boolean active;
     
+    ModoJuego modo;
     
     public Frame() {
                 
@@ -29,7 +30,7 @@ public class Frame extends javax.swing.JFrame {
         active = true;
         label1.setOpaque(true);
         label2.setOpaque(true);
-        Color amarilloClaro=new Color(255, 255, 149);
+        Color amarilloClaro = new Color(255, 255, 149);
         label1.setBackground(amarilloClaro);
         label2.setBackground(amarilloClaro);
         
@@ -38,8 +39,11 @@ public class Frame extends javax.swing.JFrame {
         iconoSet("tick.png", jButton1, "Estoy listo!");
         iconoSet("hint.png", hint, "Ayuda");
         
-        jug1=new Jugador();
-        ord=new Ordenador();
+        modo = new ModoJuego();
+        modo.setVisible(true);
+        
+        jug1 = new Jugador();
+        ord = new Ordenador();
     }
 
    
@@ -161,16 +165,16 @@ public class Frame extends javax.swing.JFrame {
                         .addComponent(marc2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(b_piedra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)
+                        .addComponent(b_piedra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(b_papel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(b_tijera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(41, 41, 41)
                                 .addComponent(b_lagarto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(111, 111, 111)))
                         .addGap(26, 26, 26)
